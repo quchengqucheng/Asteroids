@@ -6,7 +6,7 @@
 
 using a phone as a game controller to play a 90s nostalgic arcade game -Asteroids which the game interface shows on personal computer
 
-#[成果展示（视频需VPN）](http://coriqu.com/portfolio/project/gamedesign.html)
+# [成果展示（视频需VPN）](http://coriqu.com/portfolio/project/gamedesign.html)
 
 
 
