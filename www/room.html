@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>Room</title>
+	<link rel="stylesheet" href="css/room.css">
+	<meta name="renderer" content="webkit">
+  	<meta http-equiv = "X-UA-Compatible" content = "chrome=1" >
+  	<script src="lib/p5.js" type="text/javascript"></script>
+     <!-- link p5.play.js -->
+	<script src="lib/p5.play.js" type="text/javascript"></script>  
+	<!-- link your javascript sketch -->
+	<!-- <script src="sketch.js" type="text/javascript"></script> -->
+	<style>
+	canvas {
+		z-index: -100 !important;
+		position: fixed;
+		top: 0;
+	}
+	/*.unlogin .login {
+		z-index: 100;
+	    display: block;
+	}*/
+	.login {
+	    /*display: none;*/
+	    height: 100%;
+	    width: 100%;
+	    min-width: 860px;
+	    min-height: 700px;
+	    overflow: auto;
+	    position: relative;
+	    background-color: rgba(0,0,0,0.6);
+	}
+	/*#loginbox {
+		display: none;
+	}*/
+	.login_box {
+		/*display: none;*/
+	    position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    margin-left: -190px;
+	    margin-top: -270px;
+	    border-radius: 4px;
+	    -moz-border-radius: 4px;
+	    -webkit-border-radius: 4px;
+	    background-color: #fff;
+	    width: 380px;
+	    /*height: 540px;*/
+	    height: 500px;
+	    box-shadow: 0 2px 10px #999;
+	    -moz-box-shadow: #999 0 2px 10px;
+	    -webkit-box-shadow: #999 0 2px 10px;
+	    /*border: 1px solid red;*/
+	    background-color: #e1eaf2;
+	    opacity: 0.5;
+	}
+	.end_box {
+		/*display: none;*/
+	    position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    margin-left: -190px;
+	    margin-top: -270px;
+	    border-radius: 4px;
+	    -moz-border-radius: 4px;
+	    -webkit-border-radius: 4px;
+	    background-color: #fff;
+	    width: 380px;
+	    /*height: 540px;*/
+	    height: 500px;
+	    box-shadow: 0 2px 10px #999;
+	    -moz-box-shadow: #999 0 2px 10px;
+	    -webkit-box-shadow: #999 0 2px 10px;
+	    /*border: 1px solid red;*/
+	    background-color: #fff;
+	    opacity: 0.5;
+	    overflow: hidden;
+	}
+	
+	.end_box h2,
+	.end_box p {
+		z-index: 1000;
+		position: relative;
+	    width: 80%;
+	    /*height: %;*/
+	    margin: auto;
+	    top: 20px;
+	    text-align: center;
+	    font-weight: bold;
+	    color: #444;
+	    opacity: 1;
+	}
+	.end_box h2 {
+		top: 100px;
+	}
+	.end_box p {
+		top: 200px;
+	}
+	.end_box img {
+		z-index: 1000;
+		opacity: 1;
+	}
+	.login_box #qrcode,
+	.login_box p {
+	    position: relative;
+	    width: 70%;
+	    height: 70%;
+	    margin: auto;
+	    top: 20px;
+	    text-align: center;
+	    font-weight: bold;
+	    color: #444;
+	}
+	#selectMode {
+		display: none;
+		/*display: -webkit-flex;
+		display:         flex;*/
+		-webkit-align-items: center;
+		      align-items: center;
+		-webkit-justify-content: center;
+		      justify-content: center;
+		flex-direction: column;
+		height: 700px;
+		
+	}
+	#selectMode .button23 {
+		text-transform:uppercase;
+		font-weight: bold;
+		margin: 25px;
+	}
+	#scoreBoard {
+		z-index: -10;
+		position: fixed;
+		margin: 0 50px;
+		font-size: 50px;
+		color: #fff;
+	}
+	#startAgain {
+		display: none;
+		height: 100%;
+	    width: 100%;
+	    min-width: 860px;
+	    min-height: 700px;
+	    overflow: auto;
+	    position: relative;
+	    background-color: rgba(0,0,0,0.6);
+	}
+	.startAgainBoard {
+		display: -webkit-flex;
+		display:         flex;
+		-webkit-align-items: center;
+		      align-items: center;
+		-webkit-justify-content: center;
+		      justify-content: center;
+		flex-direction: column;
+		height: 700px;
+		
+	}
+	</style>
+</head>
+<body>
+	<div class="app">
+		<div class="logo">
+			<span id="scoreBoard">0</span>
+		</div>
+		<div class="login" id="loginbox">
+			
+	        <div id="selectMode">
+	        	<!-- <div> -->
+	        		<img src="assets/logo1.png" alt="" style=" height: 18%; margin: 160px 0 30px 0;">
+	        	<!-- </div> -->
+				<div id="single" class="button23">
+					<span>Single-player</span>
+				</div>
+				<div id="double" class="button23">
+					<span>Two-player</span>
+				</div>
+			</div>
+
+
+			<div class="login_box" id="qrcodebox">
+				<div id="qrcode"></div>
+				<P>Scan QR code to start the game</P>
+			</div>
+
+			<!-- <div class="end_box" id="endgamebox">
+				<h2>Your score is: <span style="color: red;">310</span> </h2>
+				<p>Touch the button to start the game</p>
+				<img src="assets/restart.png" alt="" style=" height: 70%; margin: 180px 0 30px 0; opacity: 1;">
+			</div>
+
+			<div id="startAgain">
+				<div class="startAgainBoard">
+					<div class="starttext"></div>
+					Game over
+					press the button to start the game.
+				</div>
+			</div> -->
+		</div>
+
+	</div>
+	
+	
+	<script src="lib/socket.io.js"></script>
+	<script src="lib/qrcode.js"></script>
+	<script src="script/room.js"></script>
+	<script src="script/sketch.js"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>My Game</title>
+	<meta name="viewport" content="width=device-width, maximum-scale=1.0, initial-scale=1.0, user-scalable=0">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv = "X-UA-Compatible" content = "chrome=1" >
+	<link rel="apple-touch-icon" href="assets/apple-touch-icon-iphone.png" />
+  	<style>
+    html,
+    body {
+        margin: 0;
+        padding: 10px;
+        background-color: #1e2331;
+    }
+    .container {
+        height: 100%;
+        width: 100%;
+        display: -webkit-flex;
+        display:         flex;
+        -webkit-align-items: center;
+              align-items: center;
+        -webkit-justify-content: center;
+              justify-content: center;
+        flex-direction: column;
+        
+
+    }
+  	.operation {
+
+  		position: relative;
+  		width: 300px;
+  		height: 300px;
+  	}
+  	#left,
+  	#top,
+  	#right,
+  	#bottom,
+  	#start {
+	   -webkit-touch-callout: none !important; /*当触摸并按住触摸目标时，禁止系统默认菜单。*/
+	   -webkit-touch-callout:none !important;
+		-webkit-user-select:none !important;
+		-khtml-user-select:none !important;
+		-moz-user-select:none !important;
+		-ms-user-select:none !important;
+		user-select:none !important;
+		position: absolute;
+		width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        /*border-bottom: none;*/
+        border: 0;
+        background-color: #1e2331;
+	}
+  	#left {
+  		left: 100px;
+  		background-color: #ffffff;
+        background-image: url(assets/blue.png);
+        background-size: 100%;
+  	}
+    #left:after {
+        /*content: '';
+        position: relative;
+        width: 0;
+        height: 0;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-bottom: 100px solid #fff;*/
+        display:block;
+        content:'';
+        border-width:20px 20px 20px 20px;
+        border-style:solid;
+        border-color: transparent transparent #1e2331 transparent;
+        
+        /* 定位 */
+        position:absolute;
+        left:30%;
+        top:10%;
+        border-radius: 5px;
+    }
+    #top {
+  		right: 0;
+  		top: 100px;
+		background-color: #ffffff;
+        background-image: url(assets/blue.png);
+        background-size: 100%;
+  	}
+    #top:after {
+        display:block;
+        content:'';
+        border-width:20px 20px 20px 20px;
+        border-style:solid;
+        border-color:  transparent transparent transparent #1e2331;
+        /* 定位 */
+        position:absolute;
+        left:50%;
+        top:30%;
+        border-radius: 5px;
+    }
+  	#right {
+  		bottom: 0;
+  		right: 100px;
+		background-color: #fff;
+        background-image: url(assets/blue.png);
+        background-size: 100%;
+
+  	}
+    #right:after {
+        display:block;
+        content:'';
+        border-width:20px 20px 20px 20px;
+        border-style:solid;
+        border-color: #1e2331 transparent transparent transparent;
+        /* 定位 */
+        position:absolute;
+        left:30%;
+        top:50%;
+        border-radius: 5px;
+    }
+  	#bottom {
+  		top: 100px;
+  		left: 0;
+  		background-color: #fff;
+        background-image: url(assets/blue.png);
+        background-size: 100%;
+
+  	}
+    #bottom:after {
+        display:block;
+        content:'';
+        border-width:20px 20px 20px 20px;
+        border-style:solid;
+        border-color: transparent #1e2331 transparent transparent;
+        /* 定位 */
+        position:absolute;
+        left:15%;
+        top:30%;
+        border-radius: 5px;
+
+    }
+  	#start {
+  		width: 120px;
+  		height: 120px;
+  		border-radius: 50%;
+        top: 100px;
+        left: 90px;
+  		background-color: gray;
+        margin: auto;
+        background-image: url(assets/orange.png);
+        background-size: 100%;
+
+  	}
+ 	 </style>
+</head>
+<body>
+  <div class="container">
+  	<div class="operation">
+  		<button id = "left" style="user-select: none;"></button>
+  		<button id = "top" style="user-select: none;"></button>
+  		<button id = "right" style="user-select: none;"></button>
+  		<button id = "bottom" style="user-select: none;"></button>
+  	</div>
+    <div class="operation">
+  	<button id = "start" style="user-select: none;"></button>
+  </div>
+  </div>
+	<script>
+		setTimeout(function(){ window.scrollTo(0, 1); }, 0);
+	</script>
+	<script src="lib/socket.io.js"></script>
+	<script src="script/device.js"></script>
+</body>
+</html>
